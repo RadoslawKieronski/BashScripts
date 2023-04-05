@@ -4,7 +4,7 @@
 # You will be prompted for the account name and password.
 
 # Make sure the script is being executed with superuser priviliges.
-if [[ ${UID} -ne 0 ]]
+if [[ "${UID}" -ne 0 ]]
 then
  echo 'Please run with sudo or as root.'
  exit 1
@@ -27,7 +27,7 @@ read -p 'Enter the password to use for the account: ' PASSWORD
 useradd -c "${COMMENT}" -m ${USER_NAME}
 
 # Check to see if the useradd command succeeded.
-if [[ ${?} -ne 0 ]]
+if [[ "${?}" -ne 0 ]]
 then
  echo 'The account could not be created'
  exit 1
@@ -39,7 +39,7 @@ fi
 echo ${PASSWORD} | passwd --stdin ${USER_NAME}
 
 # Check to see if the passwd command succeeded.
-if [[ ${?} -ne 0 ]]
+if [[ "${?}" -ne 0 ]]
 then
  echo 'The password could not be created'
  exit 1
