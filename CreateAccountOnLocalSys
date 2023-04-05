@@ -38,6 +38,13 @@ fi
  # echo pass password to stdin passwd for the USER_NAME
 echo ${PASSWORD} | passwd --stdin ${USER_NAME}
 
+# Check to see if the passwd command succeeded.
+if [[ ${?} -ne 0 ]]
+then
+ echo 'The password could not be created'
+ exit 1
+fi
+
 # Force password change on first login.
  # '-e' expire the password, the user will be forced to change password
 passwd -e ${USER_NAME}
