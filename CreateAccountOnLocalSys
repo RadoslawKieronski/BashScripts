@@ -48,3 +48,15 @@ fi
 # Force password change on first login.
  # '-e' expire the password, the user will be forced to change password
 passwd -e ${USER_NAME}
+
+# Display Username, password and host
+echo
+echo 'Your username: '
+echo "${USER_NAME}"
+echo
+echo 'Your password: '
+echo "${PASSWORD}"
+echo
+echo 'Host: '
+echo "$HOSTNAME"
+exit 0
