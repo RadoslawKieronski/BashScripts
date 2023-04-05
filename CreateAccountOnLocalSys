@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# This script creates an account on the local system.
+# You will be prompted for the account name and password.
+
+# Ask for the user name.
+ # read the input from keyboard and save to variable 'USER_NAME'
+read -p 'Enter the username to create ' USER_NAME
+
+
+# Ask for the real name.
+read -p 'Enter the name of the person who this account is for: ' COMMENT
+
+# Ask for the password.
+read -p 'Enter the password to use for the account: ' PASSWORD
+
+# Create the user.
+ # '-m' to create a home dir for the user with the same name as 'USER_NAME'
+ # '-c' to add description of an account
+ # '" "' are used as in 'COMMENT' variable can be space for e.g 'rado kiero' and double quotes are added to inteprete this as a single object
+useradd -c "${COMMENT}" -m ${USER_NAME}
+
+
+# Set the password for the user.
+ # '--stdin' read the new password from standard input.
+ # '-e' expire the password, the user will be forced to change password
+ # echo pass password to stdin passwd for the USER_NAME
+echo ${PASSWORD} | passwd --stdin ${USER_NAME}
+
+# Force password change on first login.
+passwd -e ${USER_NAME}
