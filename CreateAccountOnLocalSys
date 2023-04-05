@@ -26,6 +26,13 @@ read -p 'Enter the password to use for the account: ' PASSWORD
  # '" "' are used as in 'COMMENT' variable can be space for e.g 'rado kiero' and double quotes are added to inteprete this as a single object
 useradd -c "${COMMENT}" -m ${USER_NAME}
 
+# Check to see if the useradd command succeeded.
+if [[ ${?} -ne 0 ]]
+then
+ echo 'The account could not be created'
+ exit 1
+fi
+
 # Set the password for the user.
  # '--stdin' read the new password from standard input.
  # echo pass password to stdin passwd for the USER_NAME
