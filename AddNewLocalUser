@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Script for addinng a new user with generated password
+
+# Make sure if the script is being executed by the superuser
+if [[ ${UID} -ne 0 ]]
+ then
+ echo "You need to execute the script with superuser privileges"
+exit 1
+fi
+
+# if the user doesn't supply at least one argument, then give them help
+NUMBER_OF_ARGUMENTS="${#}"
+if [[ "${NUMBER_OF_ARGUMENTS}" -lt 1 ]]
+ then 
+ echo "You have to provide at least one argument in order: 1st: username, 2nd: additional comment(typically user name and last name)"
+exit 1
+fi
+
+# The first parameter is the username
+USERNAME="${1}"
+
+# Account comment
+COMMENT="${2}"
+
+# Generate a password
+PASSWORD="$(date +%s%N)"
+echo "${PASSWORD}"
+
+# Create the user with the passsword
+useradd ${USERNAME} -c ${COMMENT}
+# check if useradd succeeded
+if [[ "${?}" -ne 0 ]]
+then
+ echo "User has not been created"
+exit 1
+fi
+
+# Set the password for
+echo ${PASSWORD} | passwd --stdin ${USERNAME}
+if [[ "${?}" -ne 0 ]]
+then
+ echo "The password for the account could not be set"
+exit 1
+fi
+
+# Force password change on first login.
+passwd -e ${USERNAME}
+
+#Display the username, password, and the host
+echo
+echo "username "
+echo "${USERNAME}"
+echo
+echo "password: "
+echo "${PASSWORD}"
+echo
+echo "host: "
+echo "${HOSTNAME}"
+exit 0
