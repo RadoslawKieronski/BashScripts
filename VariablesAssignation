@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Assign a value to a variable
+WORD='script'
+
+# Display that value using the variable.
+echo "$WORD"
+
+# Demonstrate that single quotes cause variables to NOT get expanded.
+echo '$WORD'
+
+# combine the variable with hard-coded text.
+echo "this is a shell $WORD"
+
+# Display the contents of the variable using an alternative syntax.
+echo "this is a shell ${WORD}"
+
+# Append text to the variable.
+echo "${WORD}ing if fun!"
+
+# SHow how NOT to append text to a vatiable.
+# this doesnt work:
+echo "$WORDing is fun!"
+
+# Create a new variable
+ENDING='ed'
+
+# Combine the two variables.
+echo "This is ${WORD}${ENDING}"
+
+# REassign value to ENDING.
+ENDING='s'
+echo "You are going to write many ${WORD}${ENDING} in this class!"
+
+
+
+# RESULTS:
+# script
+# $WORD
+# this is a shell script
+# this is a shell script
+# scripting if fun!
+#  is fun!
+# This is scripted
+# You are going to write many scripts in this class!
+#-------
+
+# WORD='value'
+# use echo with '$WORD '  and "$WORD "
+# ' ' bash display exacly the $WORD 
+# " " bash interpret the values and display value 
