@@ -19,7 +19,7 @@ else
  echo 'You are not root.'
 fi
 
-
-# diff ' '  and " "
-# ' ' bash display exacly the value
-# " " bash interpret the values and display
+# WORD='value'
+# use echo with '$WORD '  and "$WORD "
+# ' ' bash display exacly the $WORD 
+# " " bash interpret the values and display value 
