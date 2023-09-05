@@ -18,8 +18,3 @@ then
 else
  echo 'You are not root.'
 fi
-
-# WORD='value'
-# use echo with '$WORD '  and "$WORD "
-# ' ' bash display exacly the $WORD 
-# " " bash interpret the values and display value 
